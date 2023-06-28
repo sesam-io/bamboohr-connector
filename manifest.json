@@ -1,0 +1,14 @@
+{
+  "additional_parameters": {
+    "account_id": {}
+  },
+  "auth": "api_key",
+  "datatypes": {
+    "employee": {
+      "label": "Employee",
+      "template": "templates/employee.json"
+    }
+  },
+  "system": "BambooHR",
+  "system-template": "templates/system.json"
+}

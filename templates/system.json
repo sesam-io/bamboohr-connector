@@ -1,0 +1,20 @@
+{
+  "_id": "{{@ system @}}",
+  "authentication": "basic",
+  "operations": {
+    "employee-list": {
+      "headers": {
+        "accept": "application/json"
+      },
+      "id_expression": "{{ id }}",
+      "method": "GET",
+      "payload_property": "employees",
+      "url": "employees/directory"
+    }
+  },
+  "password": "x",
+  "type": "system:rest",
+  "url_pattern": "https://api.bamboohr.com/api/gateway.php/{{@ account_id @}}/v1/%s",
+  "username": "$SECRET(api_key)",
+  "verify_ssl": true
+}
