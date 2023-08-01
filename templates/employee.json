@@ -1,12 +1,91 @@
-{
-  "_id": "{{@ system @}}-{{@ datatype @}}-collect",
-  "add_namespaces": false,
-  "source": {
-    "operation": "{{@ datatype @}}-list",
-    "supports_since": true,
-    "system": "{{@ system @}}",
-    "trace": true,
-    "type": "rest"
+[
+  {
+    "_id": "{{@ system @}}-{{@ datatype @}}-collect",
+    "add_namespaces": false,
+    "exclude_completeness": [
+      "{{@ system @}}-{{@ datatype @}}-share"
+    ],
+    "namespaced_identifiers": false,
+    "source": {
+      "operation": "list",
+      "supports_since": true,
+      "system": "{{@ system @}}",
+      "type": "rest"
+    },
+    "transform": {
+      "properties": {
+        "primary_key": "id",
+        "share_dataset": "{{@ system @}}-{{@ datatype @}}-share"
+      },
+      "template": "transform-collect-rest",
+      "type": "template"
+    },
+    "type": "pipe"
   },
-  "type": "pipe"
-}
+  {
+    "_id": "{{@ system @}}-{{@ datatype @}}-share",
+    "add_namespaces": false,
+    "batch_size": 1,
+    "compaction": {
+      "keep_versions": 100
+    },
+    "exclude_completeness": [
+      "{{@ system @}}-{{@ datatype @}}-share"
+    ],
+    "namespaced_identifiers": false,
+    "sink": {
+      "deletion_tracking": false,
+      "set_initial_offset": "onload"
+    },
+    "source": {
+      "dataset": "{{@ system @}}-{{@ datatype @}}-transform",
+      "type": "dataset"
+    },
+    "transform": {
+      "properties": {
+        "primary_key": "id",
+        "rest_system": "{{@ system @}}",
+        "rules": {
+          "insert_rewrite": [
+            [
+              "comment",
+              "WARNING: The functionality to use insert_rewrite doesn't exist yet, inserts are not possible for this data. Warning can be removed when IS-15441 is implemented."
+            ],
+            [
+              "copy",
+              "*"
+            ],
+            [
+              "if",
+              [
+                "eq",
+                "_S.$operation",
+                "insert"
+              ],
+              [
+                "add",
+                "response_body",
+                [
+                  "dict",
+                  "id",
+                  [
+                    "last",
+                    [
+                      "split",
+                      "/",
+                      "_S.response_head.Location"
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        },
+        "share_dataset": "{{@ system @}}-{{@ datatype @}}-share"
+      },
+      "template": "transform-share-rest",
+      "type": "template"
+    },
+    "type": "pipe"
+  }
+]

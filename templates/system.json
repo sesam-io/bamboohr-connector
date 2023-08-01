@@ -2,14 +2,112 @@
   "_id": "{{@ system @}}",
   "authentication": "basic",
   "operations": {
-    "employee-list": {
+    "insert": {
+      "headers": {
+        "accept": "application/json"
+      },
+      "method": "POST",
+      "response_headers_property": "response_head",
+      "url": "employees"
+    },
+    "list": {
+      "headers": {
+        "accept": "application/json"
+      },
+      "id_expression": "{{ id }}",
+      "method": "POST",
+      "payload": {
+        "fields": [
+          "lastChanged",
+          "address1",
+          "address2",
+          "allergies",
+          "dateOfBirth",
+          "city",
+          "payRateEffectiveDate",
+          "payChangeReason",
+          "country",
+          "department",
+          "dietaryRestrictions",
+          "division",
+          "eeo",
+          "employeeNumber",
+          "employmentHistoryStatus",
+          "employmentHistoryStatus",
+          "acaStatus",
+          "employeeStatusDate",
+          "ethnicity",
+          "facebook",
+          "firstName",
+          "gender",
+          "hireDate",
+          "homeEmail",
+          "homePhone",
+          "hoursPerPayCycle",
+          "instagram",
+          "jobTitle",
+          "lastName",
+          "linkedIn",
+          "location",
+          "maritalStatus",
+          "middleName",
+          "mobilePhone",
+          "customNIN1",
+          "originalHireDate",
+          "overtimeRate",
+          "overtimeRate",
+          "exempt",
+          "payPer",
+          "payRate",
+          "payRate",
+          "payPeriod",
+          "paySchedule",
+          "payType",
+          "pinterest",
+          "nickname",
+          "preferredName",
+          "customSecondaryLanguage1",
+          "customShirtsize",
+          "ssn",
+          "state",
+          "employmentStatus",
+          "status",
+          "customTaxFileNumber1",
+          "twitterFeed",
+          "workEmail",
+          "workPhoneExtension",
+          "workPhone",
+          "zipcode",
+          "terminationDate"
+        ],
+        "filters": {
+          "isActive": {
+            "value": "Active"
+          },
+          "lastChanged": {
+            "value": "{{ since }}"
+          }
+        }
+      },
+      "payload_property": "employees",
+      "updated_expression": "{{ lastChanged }}",
+      "url": "reports/custom?format=json&onlyCurrent=true"
+    },
+    "lookup": {
       "headers": {
         "accept": "application/json"
       },
       "id_expression": "{{ id }}",
       "method": "GET",
-      "payload_property": "employees",
-      "url": "employees/directory"
+      "url": "employees/{{ entity.id }}/?fields={{ entity['$source']['$based_on_properties'] | join(',') }}"
+    },
+    "update": {
+      "headers": {
+        "accept": "application/json"
+      },
+      "id_expression": "{{ id }}",
+      "method": "POST",
+      "url": "employees/{{ entity.id }}"
     }
   },
   "password": "x",
