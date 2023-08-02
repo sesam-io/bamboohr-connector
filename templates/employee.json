@@ -12,14 +12,36 @@
       "system": "{{@ system @}}",
       "type": "rest"
     },
-    "transform": {
-      "properties": {
-        "primary_key": "id",
-        "share_dataset": "{{@ system @}}-{{@ datatype @}}-share"
+    "transform": [
+      {
+        "rules": {
+          "default": [
+            [
+              "copy",
+              "*"
+            ],
+            [
+              "add",
+              "$last-modified",
+              [
+                "datetime-parse",
+                "%Y-%m-%dT%H:%M:%S%z",
+                "_S.lastChanged"
+              ]
+            ]
+          ]
+        },
+        "type": "dtl"
       },
-      "template": "transform-collect-rest",
-      "type": "template"
-    },
+      {
+        "properties": {
+          "primary_key": "id",
+          "share_dataset": "{{@ system @}}-{{@ datatype @}}-share"
+        },
+        "template": "transform-collect-rest",
+        "type": "template"
+      }
+    ],
     "type": "pipe"
   },
   {
@@ -45,12 +67,8 @@
       "properties": {
         "primary_key": "id",
         "rest_system": "{{@ system @}}",
-        "rules": {
-          "insert_rewrite": [
-            [
-              "comment",
-              "WARNING: The functionality to use insert_rewrite doesn't exist yet, inserts are not possible for this data. Warning can be removed when IS-15441 is implemented."
-            ],
+        "rewrite_rules_mutation": {
+          "rewrite_insert": [
             [
               "copy",
               "*"
@@ -63,18 +81,22 @@
                 "insert"
               ],
               [
-                "add",
-                "response_body",
                 [
-                  "dict",
-                  "id",
+                  "add",
+                  "response_body",
                   [
-                    "last",
+                    "dict",
+                    "id",
                     [
-                      "split",
-                      "/",
-                      "_S.response_head.Location"
-                    ]
+                      "last",
+                      [
+                        "split",
+                        "/",
+                        "_S.response_head.Location"
+                      ]
+                    ],
+                    "comment",
+                    "Field 'id' is added by DTL for generated_id logic. The body returned by BambooHR is empty"
                   ]
                 ]
               ]

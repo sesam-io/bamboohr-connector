@@ -81,9 +81,6 @@
           "terminationDate"
         ],
         "filters": {
-          "isActive": {
-            "value": "Active"
-          },
           "lastChanged": {
             "value": "{{ since }}"
           }
