@@ -1,0 +1,227 @@
+{
+  "$id": "/api/pipes/xxxxxx-employee-collect/entity-types/sink",
+  "$schema": "http://json-schema.org/schema#",
+  "additionalProperties": true,
+  "properties": {
+    "acaStatus": {
+      "description": "",
+      "type": "string"
+
+    },
+    "address1": {
+      "description": "",
+      "type": "string"
+    },
+    "address2": {
+      "description": "",
+      "type": "string"
+    },
+    "allergies": {
+      "description": "",
+      "type": "string"
+    },
+    "city": {
+      "description": "",
+      "type": "string"
+    },
+    "country": {
+      "description": "",
+      "type": "string"
+
+    },
+    "customNIN1": {
+      "description": "",
+      "type": "string"
+    },
+    "customSecondaryLanguage1": {
+      "description": "",
+      "type": "string"
+
+    },
+    "customShirtsize": {
+      "description": "",
+      "type": "string"
+
+    },
+    "customTaxFileNumber1": {
+      "description": "",
+      "type": "string"
+    },
+    "department": {
+      "description": "",
+      "type": "string"
+
+    },
+    "dietaryRestrictions": {
+      "description": "",
+      "type": "string"
+    },
+    "division": {
+      "description": "",
+      "type": "string"
+
+    },
+    "eeo": {
+      "description": "",
+      "type": "string"
+
+    },
+    "employeeNumber": {
+      "description": "",
+      "type": "string"
+
+    },
+    "employeeStatusDate": {
+      "description": "",
+      "type": "string"
+
+    },
+    "employmentHistoryStatus": {
+      "description": "",
+      "type": "string"
+
+    },
+    "ethnicity": {
+      "description": "",
+      "type": "string"
+
+    },
+    "exempt": {
+      "description": "",
+      "type": "string"
+
+    },
+    "facebook": {
+      "description": "",
+      "type": "string"
+
+    },
+    "gender": {
+      "description": "",
+      "type": "string"
+
+    },
+    "homeEmail": {
+      "description": "",
+      "type": "string"
+
+    },
+    "homePhone": {
+      "description": "",
+      "type": "string"
+
+    },
+    "hoursPerPayCycle": {
+      "description": "",
+      "type": "string"
+
+    },
+    "instagram": {
+      "description": "",
+      "type": "string"
+
+    },
+    "jobTitle": {
+      "description": "",
+      "type": "string"
+
+    },
+    "linkedIn": {
+      "description": "",
+      "type": "string"
+
+    },
+    "location": {
+      "description": "",
+      "type": "string"
+
+    },
+    "maritalStatus": {
+      "description": "",
+      "type": "string"
+
+    },
+    "middleName": {
+      "description": "",
+      "type": "string"
+
+    },
+    "mobilePhone": {
+      "description": "",
+      "type": "string"
+
+    },
+    "payChangeReason": {
+      "description": "",
+      "type": "string"
+
+    },
+    "payPer": {
+      "description": "",
+      "type": "string"
+
+    },
+    "payPeriod": {
+      "description": "",
+      "type": "string"
+
+    },
+    "payRateEffectiveDate": {
+      "description": "",
+      "type": "string"
+
+    },
+    "paySchedule": {
+      "description": "",
+      "type": "string"
+
+    },
+    "payType": {
+      "description": "",
+      "type": "string"
+
+    },
+    "pinterest": {
+      "description": "",
+      "type": "string"
+
+    },
+    "preferredName": {
+      "description": "",
+      "type": "string"
+
+    },
+    "ssn": {
+      "description": "",
+      "type": "string"
+
+    },
+    "twitterFeed": {
+      "description": "",
+      "type": "string"
+
+    },
+    "workEmail": {
+      "description": "",
+      "type": "string"
+
+    },
+    "workPhone": {
+      "description": "",
+      "type": "string"
+
+    },
+    "workPhoneExtension": {
+      "description": "",
+      "type": "string"
+
+    },
+    "zipcode": {
+      "description": "",
+      "type": "string"
+
+    }
+  },
+  "title": "Pipe sink entity type: xxxxxx-employee-collect",
+  "type": "object"
+}
